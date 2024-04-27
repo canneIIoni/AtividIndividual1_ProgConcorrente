@@ -1,4 +1,8 @@
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 class Conta {
+    private Lock lock = new ReentrantLock();
     private double saldo;
 
     public Conta(double valorInicial) {
@@ -10,16 +14,34 @@ class Conta {
     }
 
     public void sacar(double valor) {
-        saldo -= valor;
+        lock.lock();
+        try {
+            saldo -= valor;
+        }
+        finally {
+            lock.unlock();
+        }
     }
 
     public void depositar(double valor) {
-        saldo += valor;
+        lock.lock();
+        try {
+            saldo += valor;
+        }
+        finally {
+            lock.unlock();
+        }
     }
 
     public void transferir(Conta destino, double valor) {
         // Saca valor da Conta atual e deposita valor na Conta destino.
-        sacar(valor);
-        destino.depositar(valor);
+        lock.lock();
+        try {
+            sacar(valor);
+            destino.depositar(valor);
+        }
+        finally {
+            lock.unlock();
+        }
     }
 }
