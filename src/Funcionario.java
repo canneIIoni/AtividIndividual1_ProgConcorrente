@@ -7,4 +7,17 @@ class Funcionario extends Thread {
         this.contaSal = contaSal;
         this.contaInvest = contaInvest;
     }
+
+    public Conta getContaSal() {
+        return contaSal;
+    }
+
+    public Conta getContaInvest() {
+        return contaInvest;
+    }
+
+    public void investir() {
+        double valorInvestido = SALARIO * 0.2;
+        contaSal.transferir(contaInvest, valorInvestido);
+    }
 }
