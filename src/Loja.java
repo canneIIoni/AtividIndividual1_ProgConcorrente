@@ -37,4 +37,8 @@ class Loja {
             }
         }
     }
+
+    public Conta getConta() {
+        return conta;
+    }
 }
