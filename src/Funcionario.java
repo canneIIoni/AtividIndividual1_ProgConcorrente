@@ -19,5 +19,6 @@ class Funcionario extends Thread {
     public void investir() {
         double valorInvestido = SALARIO * 0.2;
         contaSal.transferir(contaInvest, valorInvestido);
+        System.out.println(Thread.currentThread().getName() + " investiu R$" + valorInvestido + " na conta de investimentos.");
     }
 }

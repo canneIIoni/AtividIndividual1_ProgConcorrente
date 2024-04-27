@@ -4,7 +4,7 @@ import java.util.concurrent.locks.ReentrantLock;
 class Banco {
     private Lock lock = new ReentrantLock();
 
-    public synchronized void controleTransferencia(double valor, Conta origem, Conta destino) {
+    public synchronized void controleTransferencia(double valor, Conta destino, Conta origem) {
         lock.lock();
         try {
             if (origem.getSaldo() >= valor) {
